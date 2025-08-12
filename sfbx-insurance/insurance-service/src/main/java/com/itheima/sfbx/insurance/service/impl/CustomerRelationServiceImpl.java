@@ -137,7 +137,12 @@ public class CustomerRelationServiceImpl extends ServiceImpl<CustomerRelationMap
         try {
             //转换CustomerRelationVO为CustomerRelation
             CustomerRelation customerRelation = BeanConv.toBean(customerRelationVO, CustomerRelation.class);
+            //从SecurityContext(spring security的上下文)中获取用户ID信息
             customerRelation.setCustomerId(String.valueOf(SubjectContent.getUserVO().getId()));
+            //如果关系为u说明前端传错了，应该为0
+            if ("u".equals(customerRelationVO.getRelation())){
+                customerRelation.setRelation("0");
+            }
             boolean flag = save(customerRelation);
             if (!flag){
                 throw new RuntimeException("保存客户关系表失败");

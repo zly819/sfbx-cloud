@@ -72,6 +72,7 @@ public class MineHomeController {
     @ApiImplicitParam(name = "customerRelationVO", value = "用户关系", required = false, dataType = "CustomerRelationVO")
     public ResponseResult<CustomerRelationVO> addCustomerRelation(@Valid @RequestBody CustomerRelationVO customerRelationVO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            //使用@Valid校参数之后如果有异常则返回
             return ResponseResultBuild.validateErrorBuild(null);
         }else {
             return ResponseResultBuild.successBuild(customerRelationService.save(customerRelationVO));
