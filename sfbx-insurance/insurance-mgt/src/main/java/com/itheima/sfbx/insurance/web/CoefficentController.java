@@ -94,7 +94,9 @@ public class CoefficentController {
      */
     @DeleteMapping
     @ApiOperation(value = "删除系数项",notes = "删除系数项")
+    //参数描述
     @ApiImplicitParam(name = "coefficentVO",value = "系数项VO对象",required = true,dataType = "CoefficentVO")
+    //指定属性值
     @ApiOperationSupport(includeParameters = {"coefficentVO.checkedIds"})
     public ResponseResult<Boolean> deleteCoefficent(@RequestBody CoefficentVO coefficentVO) {
         Boolean flag = coefficentService.delete(coefficentVO.getCheckedIds());

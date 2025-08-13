@@ -163,6 +163,7 @@ public class CoefficentServiceImpl extends ServiceImpl<CoefficentMapper, Coeffic
         @CacheEvict(value = CoefficentCacheConstant.BASIC,allEntries = true)})
     public Boolean delete(String[] checkedIds) {
         try {
+            //将字符串数组转换为Long数组
             List<Long> idsLong = Arrays.asList(checkedIds)
                 .stream().map(Long::new).collect(Collectors.toList());
             boolean flag = removeByIds(idsLong);
