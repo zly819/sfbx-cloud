@@ -76,7 +76,9 @@ public class ConditionController {
      */
     @PatchMapping
     @ApiOperation(value = "修改筛选项",notes = "修改筛选项")
+    //参数描述
     @ApiImplicitParam(name = "conditionVO",value = "筛选项VO对象",required = true,dataType = "ConditionVO")
+    //指定属性
     @ApiOperationSupport(includeParameters = {"conditionVO.id","conditionVO.dataState","conditionVO.conditionKey","conditionVO.conditionKeyName","conditionVO.conditionVal","conditionVO.sortNo","conditionVO.remake"})
     public ResponseResult<Boolean> updateCondition(@RequestBody ConditionVO conditionVO) {
         Boolean flag = conditionService.update(conditionVO);
