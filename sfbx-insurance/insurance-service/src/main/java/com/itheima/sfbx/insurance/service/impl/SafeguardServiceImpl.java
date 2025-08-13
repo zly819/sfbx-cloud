@@ -159,10 +159,12 @@ public class SafeguardServiceImpl extends ServiceImpl<SafeguardMapper, Safeguard
         try {
             //转换SafeguardVO为Safeguard
             Safeguard safeguard = BeanConv.toBean(safeguardVO, Safeguard.class);
+            //根据id更新数据
             boolean flag = updateById(safeguard);
             if (!flag){
                 throw new RuntimeException("修改保障项失败");
             }
+            //返回操作结果
             return flag;
         }catch (Exception e){
             log.error("修改保障项异常：{}", ExceptionsUtil.getStackTraceAsString(e));
@@ -177,6 +179,7 @@ public class SafeguardServiceImpl extends ServiceImpl<SafeguardMapper, Safeguard
         @CacheEvict(value = SafeguardCacheConstant.BASIC,allEntries = true)})
     public Boolean delete(String[] checkedIds) {
         try {
+            //将字符串数组转换为Long数组
             List<Long> idsLong = Arrays.asList(checkedIds)
                 .stream().map(Long::new).collect(Collectors.toList());
             boolean flag = removeByIds(idsLong);

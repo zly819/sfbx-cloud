@@ -76,7 +76,9 @@ public class SafeguardController {
      */
     @PatchMapping
     @ApiOperation(value = "修改保障项",notes = "修改保障项")
+    //参数描述
     @ApiImplicitParam(name = "safeguardVO",value = "保障项VO对象",required = true,dataType = "SafeguardVO")
+    //指定属性值
     @ApiOperationSupport(includeParameters = {"safeguardVO.id","safeguardVO.dataState","safeguardVO.safeguardKey","safeguardVO.safeguardKeyName","safeguardVO.safeguardVal","safeguardVO.safeguardType","safeguardVO.sortNo","safeguardVO.remake"})
     public ResponseResult<Boolean> updateSafeguard(@RequestBody SafeguardVO safeguardVO) {
         Boolean flag = safeguardService.update(safeguardVO);
@@ -90,7 +92,9 @@ public class SafeguardController {
      */
     @DeleteMapping
     @ApiOperation(value = "删除保障项",notes = "删除保障项")
+    //参数描述
     @ApiImplicitParam(name = "safeguardVO",value = "保障项VO对象",required = true,dataType = "SafeguardVO")
+    //指定属性值
     @ApiOperationSupport(includeParameters = {"safeguardVO.checkedIds"})
     public ResponseResult<Boolean> deleteSafeguard(@RequestBody SafeguardVO safeguardVO) {
         Boolean flag = safeguardService.delete(safeguardVO.getCheckedIds());
