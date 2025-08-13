@@ -124,6 +124,7 @@ public class SafeguardController {
      */
     @PostMapping("safeguard-key/{safeguardKey}")
     @ApiOperation(value = "保障项key查询SafeguardVO",notes = "保障项key查询SafeguardVO")
+    //参数描述
     @ApiImplicitParam(paramType = "path",name = "safeguardKey",value = "保障项key",dataType = "String")
     public ResponseResult<SafeguardVO> findBySafeguardKey(@PathVariable("safeguardKey") String safeguardKey) {
         SafeguardVO safeguardVO = safeguardService.findBySafeguardKey(safeguardKey);
