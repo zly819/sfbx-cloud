@@ -37,11 +37,13 @@ public class ConditionController {
      */
     @PostMapping("page/{pageNum}/{pageSize}")
     @ApiOperation(value = "筛选项分页",notes = "筛选项分页")
+    //参数描述
     @ApiImplicitParams({
         @ApiImplicitParam(name = "conditionVO",value = "筛选项VO对象",required = true,dataType = "ConditionVO"),
         @ApiImplicitParam(paramType = "path",name = "pageNum",value = "页码",example = "1",dataType = "Integer"),
         @ApiImplicitParam(paramType = "path",name = "pageSize",value = "每页条数",example = "10",dataType = "Integer")
     })
+    //指定属性值
     @ApiOperationSupport(includeParameters = {"conditionVO.dataState","conditionVO.conditionKey","conditionVO.conditionKeyName","conditionVO.conditionVal","conditionVO.sortNo","conditionVO.remake"})
     public ResponseResult<Page<ConditionVO>> findConditionVOPage(
                                     @RequestBody ConditionVO conditionVO,
