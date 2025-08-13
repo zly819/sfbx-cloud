@@ -39,11 +39,13 @@ public class CoefficentController {
      */
     @PostMapping("page/{pageNum}/{pageSize}")
     @ApiOperation(value = "系数项分页",notes = "系数项分页")
+    //参数描述
     @ApiImplicitParams({
         @ApiImplicitParam(name = "coefficentVO",value = "系数项VO对象",required = true,dataType = "CoefficentVO"),
         @ApiImplicitParam(paramType = "path",name = "pageNum",value = "页码",example = "1",dataType = "Integer"),
         @ApiImplicitParam(paramType = "path",name = "pageSize",value = "每页条数",example = "10",dataType = "Integer")
     })
+    //指定属性值
     @ApiOperationSupport(includeParameters = {"coefficentVO.dataState","coefficentVO.coefficentKey","coefficentVO.coefficentKeyName","coefficentVO.coefficentVal","coefficentVO.sortNo","coefficentVO.remake","coefficentVO.coefficentType"})
     public ResponseResult<Page<CoefficentVO>> findCoefficentVOPage(
                                     @RequestBody CoefficentVO coefficentVO,
