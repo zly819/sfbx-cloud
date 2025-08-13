@@ -60,7 +60,9 @@ public class SafeguardController {
      */
     @PutMapping
     @ApiOperation(value = "保存Safeguard",notes = "添加Safeguard")
+    //参数描述
     @ApiImplicitParam(name = "safeguardVO",value = "保障项VO对象",required = true,dataType = "SafeguardVO")
+    //指定属性值
     @ApiOperationSupport(includeParameters = {"safeguardVO.dataState","safeguardVO.safeguardKey","safeguardVO.safeguardKeyName","safeguardVO.safeguardVal","safeguardVO.safeguardType","safeguardVO.sortNo","safeguardVO.remake"})
     public ResponseResult<SafeguardVO> createSafeguard(@RequestBody SafeguardVO safeguardVO) {
         SafeguardVO safeguardVOResult = safeguardService.save(safeguardVO);

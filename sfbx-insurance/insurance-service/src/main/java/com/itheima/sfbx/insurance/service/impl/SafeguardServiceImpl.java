@@ -136,6 +136,7 @@ public class SafeguardServiceImpl extends ServiceImpl<SafeguardMapper, Safeguard
         try {
             //转换SafeguardVO为Safeguard
             Safeguard safeguard = BeanConv.toBean(safeguardVO, Safeguard.class);
+            //保存数据，mp会将新增的id进行回填
             boolean flag = save(safeguard);
             if (!flag){
                 throw new RuntimeException("保存保障项失败");
