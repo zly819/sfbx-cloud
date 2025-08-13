@@ -115,6 +115,7 @@ public class ConditionServiceImpl extends ServiceImpl<ConditionMapper, Condition
         try {
             //转换ConditionVO为Condition
             Condition condition = BeanConv.toBean(conditionVO, Condition.class);
+            //保存数据
             boolean flag = save(condition);
             if (!flag){
                 throw new RuntimeException("保存筛选项失败");

@@ -60,7 +60,9 @@ public class ConditionController {
      */
     @PutMapping
     @ApiOperation(value = "保存Condition",notes = "添加Condition")
+    //参数描述
     @ApiImplicitParam(name = "conditionVO",value = "筛选项VO对象",required = true,dataType = "ConditionVO")
+    //指定属性
     @ApiOperationSupport(includeParameters = {"conditionVO.dataState","conditionVO.conditionKey","conditionVO.conditionKeyName","conditionVO.conditionVal","conditionVO.sortNo","conditionVO.remake"})
     public ResponseResult<ConditionVO> createCondition(@RequestBody ConditionVO conditionVO) {
         ConditionVO conditionVOResult = conditionService.save(conditionVO);
