@@ -78,7 +78,9 @@ public class CoefficentController {
      */
     @PatchMapping
     @ApiOperation(value = "修改系数项",notes = "修改系数项")
+    //参数描述
     @ApiImplicitParam(name = "coefficentVO",value = "系数项VO对象",required = true,dataType = "CoefficentVO")
+    //指定属性值
     @ApiOperationSupport(includeParameters = {"coefficentVO.id","coefficentVO.dataState","coefficentVO.coefficentKey","coefficentVO.coefficentKeyName","coefficentVO.coefficentVal","coefficentVO.sortNo","coefficentVO.remake","coefficentVO.coefficentType"})
     public ResponseResult<Boolean> updateCoefficent(@RequestBody CoefficentVO coefficentVO) {
         Boolean flag = coefficentService.update(coefficentVO);

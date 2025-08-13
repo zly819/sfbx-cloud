@@ -144,6 +144,7 @@ public class CoefficentServiceImpl extends ServiceImpl<CoefficentMapper, Coeffic
         try {
             //转换CoefficentVO为Coefficent
             Coefficent coefficent = BeanConv.toBean(coefficentVO, Coefficent.class);
+            //修改数据
             boolean flag = updateById(coefficent);
             if (!flag){
                 throw new RuntimeException("修改系数项失败");
