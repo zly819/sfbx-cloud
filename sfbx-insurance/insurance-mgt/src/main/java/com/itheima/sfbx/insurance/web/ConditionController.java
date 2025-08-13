@@ -108,7 +108,9 @@ public class ConditionController {
      */
     @PostMapping("list")
     @ApiOperation(value = "多条件查询筛选项列表",notes = "多条件查询筛选项列表")
+    //参数描述
     @ApiImplicitParam(name = "conditionVO",value = "筛选项VO对象",required = true,dataType = "ConditionVO")
+    //指定属性
     @ApiOperationSupport(includeParameters = {"conditionVO.dataState","conditionVO.conditionKey","conditionVO.conditionKeyName","conditionVO.conditionVal","conditionVO.sortNo","conditionVO.remake"})
     public ResponseResult<List<ConditionVO>> conditionList(@RequestBody ConditionVO conditionVO) {
         List<ConditionVO> conditionVOList = conditionService.findList(conditionVO);
