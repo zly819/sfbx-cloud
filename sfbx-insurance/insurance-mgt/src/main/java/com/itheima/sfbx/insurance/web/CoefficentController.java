@@ -62,7 +62,9 @@ public class CoefficentController {
      */
     @PutMapping
     @ApiOperation(value = "保存Coefficent",notes = "添加Coefficent")
+    //参数描述
     @ApiImplicitParam(name = "coefficentVO",value = "系数项VO对象",required = true,dataType = "CoefficentVO")
+    //指定属性值
     @ApiOperationSupport(includeParameters = {"coefficentVO.dataState","coefficentVO.coefficentKey","coefficentVO.coefficentKeyName","coefficentVO.coefficentVal","coefficentVO.sortNo","coefficentVO.remake","coefficentVO.coefficentType"})
     public ResponseResult<CoefficentVO> createCoefficent(@RequestBody CoefficentVO coefficentVO) {
         CoefficentVO coefficentVOResult = coefficentService.save(coefficentVO);

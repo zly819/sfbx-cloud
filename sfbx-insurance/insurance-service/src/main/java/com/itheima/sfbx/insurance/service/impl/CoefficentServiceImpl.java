@@ -109,6 +109,11 @@ public class CoefficentServiceImpl extends ServiceImpl<CoefficentMapper, Coeffic
 
     @Override
     @Transactional
+    /**
+     * @Caching复合注解来组合多个缓存操作
+     * 先清除缓存：清空PAGE和LIST两个缓存区域的所有数据（通常用于保证分页或列表查询的最新性）。
+     * 再更新缓存：将当前方法的返回值存入BASIC缓存区域，键为返回对象的id。
+     */
     @Caching(evict = {@CacheEvict(value = CoefficentCacheConstant.PAGE,allEntries = true),
         @CacheEvict(value = CoefficentCacheConstant.LIST,allEntries = true)},
         put={@CachePut(value =CoefficentCacheConstant.BASIC,key = "#result.id")})
@@ -116,6 +121,7 @@ public class CoefficentServiceImpl extends ServiceImpl<CoefficentMapper, Coeffic
         try {
             //转换CoefficentVO为Coefficent
             Coefficent coefficent = BeanConv.toBean(coefficentVO, Coefficent.class);
+            //保存数据
             boolean flag = save(coefficent);
             if (!flag){
                 throw new RuntimeException("保存系数项失败");
