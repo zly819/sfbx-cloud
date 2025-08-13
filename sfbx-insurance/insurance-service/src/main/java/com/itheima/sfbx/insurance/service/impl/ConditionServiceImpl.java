@@ -157,6 +157,7 @@ public class ConditionServiceImpl extends ServiceImpl<ConditionMapper, Condition
         @CacheEvict(value = ConditionCacheConstant.BASIC,allEntries = true)})
     public Boolean delete(String[] checkedIds) {
         try {
+            //将字符串类型的id转为Long类型
             List<Long> idsLong = Arrays.asList(checkedIds)
                 .stream().map(Long::new).collect(Collectors.toList());
             boolean flag = removeByIds(idsLong);

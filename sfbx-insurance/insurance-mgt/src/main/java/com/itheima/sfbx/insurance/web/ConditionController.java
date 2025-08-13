@@ -92,7 +92,9 @@ public class ConditionController {
      */
     @DeleteMapping
     @ApiOperation(value = "删除筛选项",notes = "删除筛选项")
+    //参数描述
     @ApiImplicitParam(name = "conditionVO",value = "筛选项VO对象",required = true,dataType = "ConditionVO")
+    //指定属性
     @ApiOperationSupport(includeParameters = {"conditionVO.checkedIds"})
     public ResponseResult<Boolean> deleteCondition(@RequestBody ConditionVO conditionVO) {
         Boolean flag = conditionService.delete(conditionVO.getCheckedIds());
