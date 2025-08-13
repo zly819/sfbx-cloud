@@ -108,7 +108,9 @@ public class SafeguardController {
      */
     @PostMapping("list")
     @ApiOperation(value = "多条件查询保障项列表",notes = "多条件查询保障项列表")
+    //参数描述
     @ApiImplicitParam(name = "safeguardVO",value = "保障项VO对象",required = true,dataType = "SafeguardVO")
+    //指定属性值
     @ApiOperationSupport(includeParameters = {"safeguardVO.dataState","safeguardVO.safeguardKey","safeguardVO.safeguardKeyName","safeguardVO.safeguardVal","safeguardVO.safeguardType","safeguardVO.sortNo","safeguardVO.remake"})
     public ResponseResult<List<SafeguardVO>> safeguardList(@RequestBody SafeguardVO safeguardVO) {
         List<SafeguardVO> safeguardVOList = safeguardService.findList(safeguardVO);
