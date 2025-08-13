@@ -80,14 +80,34 @@ public class SafeguardServiceImpl extends ServiceImpl<SafeguardMapper, Safeguard
     @Cacheable(value = SafeguardCacheConstant.PAGE,key ="#pageNum+'-'+#pageSize+'-'+#safeguardVO.hashCode()")
     public Page<SafeguardVO> findPage(SafeguardVO safeguardVO, int pageNum, int pageSize) {
         try {
-            //构建分页对象
-            Page<Safeguard> SafeguardPage = new Page<>(pageNum,pageSize);
-            //构建查询条件
-            QueryWrapper<Safeguard> queryWrapper = queryWrapper(safeguardVO);
-            //执行分页查询
-            Page<SafeguardVO> safeguardVOPage = BeanConv.toPage(
-                page(SafeguardPage, queryWrapper), SafeguardVO.class);
-            //返回结果
+//            //构建分页对象
+//            Page<Safeguard> SafeguardPage = new Page<>(pageNum,pageSize);
+//            //构建查询条件
+//            QueryWrapper<Safeguard> queryWrapper = queryWrapper(safeguardVO);
+//            //执行分页查询
+//            Page<SafeguardVO> safeguardVOPage = BeanConv.toPage(
+//                page(SafeguardPage, queryWrapper), SafeguardVO.class);
+//            //返回结果
+//            return safeguardVOPage;
+            //方式二
+            Page<Safeguard> safeguardPage = new Page<>(pageNum, pageSize);
+            LambdaQueryWrapper<Safeguard> queryWrapper = new LambdaQueryWrapper<>();
+            //根据保障项编号
+            queryWrapper.eq(!EmptyUtil.isNullOrEmpty(safeguardVO.getSafeguardKey()),
+                    Safeguard::getSafeguardKey, safeguardVO.getSafeguardKey());
+            //根据保障项名称
+            queryWrapper.like(!EmptyUtil.isNullOrEmpty(safeguardVO.getSafeguardKeyName()),
+                    Safeguard::getSafeguardKeyName, safeguardVO.getSafeguardKeyName());
+            //状态
+            queryWrapper.eq(!EmptyUtil.isNullOrEmpty(safeguardVO.getDataState()),
+                    Safeguard::getDataState, safeguardVO.getDataState());
+            //按照创建时间降序排
+            queryWrapper.orderByDesc(Safeguard::getCreateTime);
+
+            Page<Safeguard> resultPage = page(safeguardPage, queryWrapper);
+
+            //转换为VO
+            Page<SafeguardVO> safeguardVOPage = BeanConv.toPage(resultPage, SafeguardVO.class);
             return safeguardVOPage;
         }catch (Exception e){
             log.error("保障项分页查询异常：{}", ExceptionsUtil.getStackTraceAsString(e));

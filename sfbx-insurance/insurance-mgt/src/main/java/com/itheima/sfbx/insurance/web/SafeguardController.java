@@ -37,11 +37,13 @@ public class SafeguardController {
      */
     @PostMapping("page/{pageNum}/{pageSize}")
     @ApiOperation(value = "保障项分页",notes = "保障项分页")
+    //指定swagger的方法参数有哪些，以后在swagger的文档上看得到这些形参的具体属性
     @ApiImplicitParams({
         @ApiImplicitParam(name = "safeguardVO",value = "保障项VO对象",required = true,dataType = "SafeguardVO"),
         @ApiImplicitParam(paramType = "path",name = "pageNum",value = "页码",example = "1",dataType = "Integer"),
         @ApiImplicitParam(paramType = "path",name = "pageSize",value = "每页条数",example = "10",dataType = "Integer")
     })
+    //ApiOperationSupport 在查询条件对象中指定哪些属性可以展示
     @ApiOperationSupport(includeParameters = {"safeguardVO.dataState","safeguardVO.safeguardKey","safeguardVO.safeguardKeyName","safeguardVO.safeguardVal","safeguardVO.safeguardType","safeguardVO.sortNo","safeguardVO.remake"})
     public ResponseResult<Page<SafeguardVO>> findSafeguardVOPage(
                                     @RequestBody SafeguardVO safeguardVO,
